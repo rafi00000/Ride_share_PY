@@ -25,3 +25,20 @@ class Ride:
     def __repr__(self):
         return f"Ride details. Start location: {self.start_time}, Estimated fare: {self.estimated_fare}"
 
+
+class RideReq:
+    def __init__(self, rider, end_location):
+        self.rider = rider
+        self.end_location = end_location
+
+
+class RideMatching:
+    def __init__(self, drivers):
+        self.available_drivers = drivers
+
+    def find_drivers(self, ride_req):
+        if len(self.available_drivers) > 0:
+            driver = self.available_drivers[0]
+            ride = Ride(ride_req.rider.current_loc, ride_req.end_loc)
+            driver.accept_ride(ride)
+            return ride
